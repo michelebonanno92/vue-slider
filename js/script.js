@@ -47,7 +47,6 @@ const { createApp } = Vue
                     // altrimenti se uguale a 0 vai all'ultimo indice dell'array di oggetti 
                     this.indexCurrent = this.slides.length - 1;
                 }
-                console.log('cliccato button top')
             }, 
        
             nextImg() {

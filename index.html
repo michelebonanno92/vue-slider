@@ -35,9 +35,20 @@
                     <div @click="nextImg()" class="next"></div>
 
                     <!-- usata la direttiva v-for per creare tramite un ciclo for ( eseguito in automatico dietro le quinte tramite vue) tanti elementi html quanti gli elementi presenti nell'array di oggetti selezionato in questo caso "slides"-->
-                    <div class="thumb active" >
+                    <div  v-for="(slide, index) in slides" class="thumb"
+                        :class="index == indexCurrent ? 'active' : '' " >
+
+                        <!-- per aggiungere una classe sulla base di una codizione si pùò usare o l'operatore ternario  quindi (variabile = condizione ? valore1: valore2 )
+                         dove se verificata la condizione ( quindi se index è uguale a indexCurrente) allora aggiungi la classe altrimenti non aggiungere niente -->
+
+                        <!-- oppure la sintassi con l'oggetto
+                        :class="{
+                            'active': index == indexCurrent
+                        }"> -->
+                    
                         <!--  usata la direttiva v-bind per sostituire dinamicamente un attributo  corrispondente all'oggetto dell'array slides -->
-                        <img v-bind:src="slides[indexCurrent].image" :alt="slides[indexCurrent].title">
+                        <img v-bind:src="slide.image" :alt="slide.title">
+                        <!-- sostuito l'elemento di slides con l'indice atraverso l'indice del v-for "slide"  -->
                     </div>
                    
                 </div>
