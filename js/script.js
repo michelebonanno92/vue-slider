@@ -1,9 +1,11 @@
+// collegamento al framework di Vue attraverso il Destructuring 
 const { createApp } = Vue
 
+// inserito l'array di oggetti in vue tramite data (nell'oggetto restituito da data )
     createApp({
     data() {
         return {
-        slides : [
+            slides : [
             {
                 image: 'img/01.webp',
                 title: 'Marvel\'s Spiderman Miles Morale',
@@ -30,15 +32,55 @@ const { createApp } = Vue
                 text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
             }
             ],
-            indexCurrent : 0,
-        }
+            indexCurrent: 0,
+        };
+    },
+        // creato in indice corrente "indexCurrent" cosi da scorrere dinamicamente l'array dell'oggetto "slides" e usato come indice dell' array stesso nell'HTML 
+
         methods: {
-         
-        
-            
-        }
-    }
-    }).mount('#app')
+
+            prevImg() {
+                // se indice maggiore di 0 decrementa
+                if (this.indexCurrent > 0) {
+                    this.indexCurrent--;
+                }else{
+                    // altrimenti se uguale a 0 vai all'ultimo indice dell'array di oggetti 
+                    this.indexCurrent = this.slides.length - 1;
+                }
+                console.log('cliccato button top')
+            }, 
+       
+            nextImg() {
+         // se indice minore della lunghezza array meno 1 aumenta indice
+                if (this.indexCurrent < this.slides.length - 1 ) {
+                    this.indexCurrent++;
+                }else{
+         // altrimenti se uguale all'ulimo indice vai al primo indice dell'array
+                    this.indexCurrent = 0;
+                }
+            },
+        /*
+            ALTRA SOLUZIONE
+
+            prevImg() {
+                this.activeImg--;
+                if (this.activeImg < 0) {
+                    this.activeImg = this.slides.length - 1;
+                }
+            }, 
+    
+            nextImg() {
+                this.activeImg++;
+                if (this.activeImg == this.slides.length) {
+                    this.activeImg = 0;
+                }
+            },
+            */
+    
+    
+           
+            }
+        }).mount('#app')
 
     
 

@@ -19,10 +19,10 @@
             <div class="slider-wrapper" tabindex="0">
 
                 <div class="item">
-                    <!--  usato il v-bind per sostituire dinamicamente una foto e il suo testo alternativo  con la chiave/valore corrispondente dell'oggetto slides -->
+                    <!--  usata la direttiva v-bind per sostituire dinamicamente un attributo corrispondente dell'oggetto slides -->
                     <img v-bind:src="slides[indexCurrent].image" :alt="slides[indexCurrent].title">
                     <div class="text">
-                        <!-- usato il text interpolation per sotituire dinamicamente del testo  con la chiave/valore corrispondente dell'oggetto slides -->
+                        <!-- usato il text interpolation per sotituire dinamicamente il contenuto di un tag corrispondente all'oggetto dell'array slides -->
                         <h3>{{slides[indexCurrent].title}}</h3>
                         <p>
                             {{slides[indexCurrent].text}}
@@ -30,31 +30,23 @@
                     </div>
                 </div>
 
-                <div class="thumbs">
-                    <div class="prev"></div>
-                    <div class="next"></div>
-                    <div class="thumb active">
-                        <img src="img/01.webp" alt="Svezia" />
+                <div class="thumbs" >
+                    <div @click="prevImg()" class="prev"></div>
+                    <div @click="nextImg()" class="next"></div>
+
+                    <!-- usata la direttiva v-for per creare tramite un ciclo for ( eseguito in automatico dietro le quinte tramite vue) tanti elementi html quanti gli elementi presenti nell'array di oggetti selezionato in questo caso "slides"-->
+                    <div class="thumb active" >
+                        <!--  usata la direttiva v-bind per sostituire dinamicamente un attributo  corrispondente all'oggetto dell'array slides -->
+                        <img v-bind:src="slides[indexCurrent].image" :alt="slides[indexCurrent].title">
                     </div>
-                    <div class="thumb">
-                        <img src="img/02.webp" alt="Ratchet & Clank" />
-                    </div>
-                    <div class="thumb">
-                        <img src="img/03.webp" alt="Fortnite" />
-                    </div>
-                    <div class="thumb">
-                        <img src="img/04.webp" alt="Stray" />
-                    </div>
-                    <div class="thumb">
-                        <img src="img/05.webp" alt="Avengers" />
-                    </div>
+                   
                 </div>
 
             </div>
         </div>
 
     </div>
-
+<!-- collegamento al framework di Vue  -->
     <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
     <script src="./js/script.js"></script>
 </body>
