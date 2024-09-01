@@ -33,6 +33,7 @@ const { createApp } = Vue
             }
             ],
             indexCurrent: 0,
+            indexTimer: 0,
         };
     },
         // creato in indice corrente "indexCurrent" cosi da scorrere dinamicamente l'array dell'oggetto "slides" e usato come indice dell' array stesso nell'HTML 
@@ -61,31 +62,17 @@ const { createApp } = Vue
 
             changeActiveSlide(newIndex){
                this.indexCurrent = newIndex
-            }
-
-            
-        /*
-            ALTRA SOLUZIONE
-
-            prevImg() {
-                this.activeImg--;
-                if (this.activeImg < 0) {
-                    this.activeImg = this.slides.length - 1;
-                }
-            }, 
-    
-            nextImg() {
-                this.activeImg++;
-                if (this.activeImg == this.slides.length) {
-                    this.activeImg = 0;
-                }
             },
-            */
-    
-    
-           
-            }
+            },
+
+            mounted() {
+                setInterval(() => {
+                    this.nextImg();
+                }, 3000);
+            },
+
         }).mount('#app')
 
-    
 
+
+       
