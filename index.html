@@ -35,13 +35,16 @@
                     <div @click="nextImg()" class="next"></div>
 
                     <!-- usata la direttiva v-for per creare tramite un ciclo for ( eseguito in automatico dietro le quinte tramite vue) tanti elementi html quanti gli elementi presenti nell'array di oggetti selezionato in questo caso "slides"-->
-                    <div  v-for="(slide, index) in slides" class="thumb"
+                    <div  v-for="(slide, index) in slides"
+                        @click="changeActiveSlide(index)"
+                        class="thumb"
                         :class="index == indexCurrent ? 'active' : '' " >
 
-                        <!-- per aggiungere una classe sulla base di una codizione si pùò usare o l'operatore ternario  quindi (variabile = condizione ? valore1: valore2 )
+                        <!-- per aggiungere una classe sulla base di una condizione si pùò usare o l'operatore ternario  quindi (variabile = condizione ? valore1: valore2 )
                          dove se verificata la condizione ( quindi se index è uguale a indexCurrente) allora aggiungi la classe altrimenti non aggiungere niente -->
 
-                        <!-- oppure la sintassi con l'oggetto
+                        <!-- oppure la sintassi con il valore del v-bind su classe come oggetto dove la chiave è una classe e dove il valore delle chiavi sono dei valori booleani quindi true o false ,
+                         dove quindi la classe si applica sempre se la condizione messa come valore è verificata
                         :class="{
                             'active': index == indexCurrent
                         }"> -->

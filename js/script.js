@@ -58,6 +58,12 @@ const { createApp } = Vue
                     this.indexCurrent = 0;
                 }
             },
+
+            changeActiveSlide(newIndex){
+               this.indexCurrent = newIndex
+            }
+
+            
         /*
             ALTRA SOLUZIONE
 
