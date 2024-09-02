@@ -33,9 +33,9 @@ const { createApp } = Vue
             }
             ],
             indexCurrent: 0,
-            indexTimer: 0,
+            autoplay: null,
         };
-    },
+        },
         // creato in indice corrente "indexCurrent" cosi da scorrere dinamicamente l'array dell'oggetto "slides" e usato come indice dell' array stesso nell'HTML 
 
         methods: {
@@ -49,7 +49,7 @@ const { createApp } = Vue
                     this.indexCurrent = this.slides.length - 1;
                 }
             }, 
-       
+
             nextImg() {
          // se indice minore della lunghezza array meno 1 aumenta indice
                 if (this.indexCurrent < this.slides.length - 1 ) {
@@ -63,15 +63,39 @@ const { createApp } = Vue
             changeActiveSlide(newIndex){
                this.indexCurrent = newIndex
             },
+
+            startAutoplay() {
+                console.log('startAutoplay');
+
+                if (this.autoplay == null){
+                    this.autoplay = setInterval(() => {
+                        this.nextImg();
+                    }, 3000);
+                }
             },
 
+            stopAutoplay() {
+                console.log('stopAutoplay');
+                if (this.autoplay != null){
+                    clearInterval(this.autoplay);
+                    this.autoplay = null;
+                }
+            },
+            
             mounted() {
-                setInterval(() => {
-                    this.nextImg();
-                }, 3000);
-            },
+                this.startAutoplay();
+            }
 
-        }).mount('#app')
+                // oppure con una function però sporcando il codice creando una variabile e sostituirla al this dato che un afunction non eredita il this dal mounted ma se lo deve creare uno per se
+
+                // const pluto = this;
+                // setInterval(function() {
+                //     pluto.nextImg();
+                // }, 3000);
+          
+        }
+
+        }).mount('#app');
 
 
 
