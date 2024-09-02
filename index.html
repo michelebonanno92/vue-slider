@@ -19,7 +19,7 @@
             <div 
             @mouseenter="stopAutoplay()"
             @mouseleave="startAutoplay()"
-            class="slider-wrapper" tabindex="0"  >
+            class="slider-wrapper">
 
                 <div class="item">
                     <!--  usata la direttiva v-bind per sostituire dinamicamente un attributo corrispondente dell'oggetto slides -->
@@ -41,6 +41,9 @@
                     <div  v-for="(slide, index) in slides"
                         @click="changeActiveSlide(index)"
                         class="thumb"
+                        tabindex="0"  
+                        @keyup.tab="nextImg()"
+                        @keyup.tab="prevImg()"
                         :class="index == indexCurrent ? 'active' : '' " >
 
                         <!-- per aggiungere una classe sulla base di una condizione si pùò usare o l'operatore ternario  quindi (variabile = condizione ? valore1: valore2 )
